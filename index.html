@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Cafe with a Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ restaurantName }}</h1>
+        <p class="description">
+            Bienvenue dans notre café la belle vue ! Nous sommes réputés pour notre
+            pain et nos merveilleuses pâtisseries. Faites vous plaisir dès le matin
+            ou avec un goûter réconfortant. Mais attention, vous verrez qu'il est
+            difficile de s'arrêter.
+        </p>
+        <h2>Panier :</h2>
+        <ul>
+            <li v-for="item in shoppingCart">
+                {{ item.label }} : {{ item.cost }} €
+            </li>
+        </ul>
+        <p>Total : {{ totalAmount }} €</p>
+
+        <footer class="footer">
+            <p>{{ copyright }}</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                restaurantName: 'Perriott Place',
+                shoppingCart: [
+                { label: 'Pommes', cost: 6 },
+                { label: 'Bananes', cost: 2 },
+                { label: 'Noix de coco', cost: 8 }
+            ]
+            },
+            computed: {
+                totalAmount() {
+                    return this.costofApples + this.costofCoconuts
+                },
+                copyright() {
+                    const currentYear = new Date().getFullYear()
+                    return `Copyright ${this.restaurantName} ${currentYear}`
+                }
+            }
+    })
+    </script>
+</body>
+
+</html>
